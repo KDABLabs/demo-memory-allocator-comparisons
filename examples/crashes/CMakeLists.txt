@@ -1,4 +1,4 @@
-add_executable(crash_double_free
-    double_free.cpp
+add_executable(demo_crash
+    crashes.cpp
     extern_stuff.cpp
 )
