@@ -6,7 +6,7 @@
 set -e
 
 print_usage() {
-    echo "Usage: $0 [--jemalloc|--glibc|--mimalloc] <executable> [-u|-i|-d|-l]"
+    echo "Usage: $0 [--jemalloc|--glibc|--mimalloc|--asan] <executable> [-u|-i|-d|-l]"
     echo "Environment variables:"
     echo "  LAUNCHER=gdb"
     echo "  LAUNCHER=valgrind"
@@ -20,8 +20,8 @@ if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     print_usage
 fi
 
-if [ "$1" != "--jemalloc" ] && [ "$1" != "--glibc" ]  && [ "$1" != "--mimalloc" ]; then
-    echo "Error: First argument must be either --jemalloc, --mimalloc or --glibc"
+if [ "$1" != "--jemalloc" ] && [ "$1" != "--glibc" ]  && [ "$1" != "--mimalloc" ] && [ "$1" != "--asan" ]; then
+    echo "Error: First argument must be either --jemalloc, --mimalloc, --glibc or --asan"
     print_usage
 fi
 
@@ -57,6 +57,8 @@ elif [ "$ALLOCATOR" = "--mimalloc" ]; then
     # export MIMALLOC_SHOW_STATS=1
     # export MIMALLOC_GUARDED_PRECISE=1
     # export MIMALLOC_GUARDED_SAMPLE_RATE=1
+elif [ "$ALLOCATOR" = "--asan" ]; then
+    export LD_PRELOAD="libasan.so"
 fi
 
 # Build the command
