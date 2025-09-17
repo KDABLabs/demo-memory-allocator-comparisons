@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2025 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+# SPDX-License-Identifier: MIT
+
 set -e
 
 print_usage() {
@@ -47,14 +50,13 @@ if [ "$ALLOCATOR" = "--jemalloc" ]; then
         export MALLOC_CONF="$MALLOC_CONF,prof:true,prof_leak:true,lg_prof_sample:0,prof_final:true"
         echo "After running, run for example ./3rdparty/jemalloc/bin/jeprof build-debug/bin/demo_crash <file>.heap"
     fi
-    
 elif [ "$ALLOCATOR" = "--mimalloc" ]; then
     export LD_PRELOAD="$SCRIPT_DIR/3rdparty/mimalloc/libmimalloc-debug.so.2.2"
     export MIMALLOC_SHOW_ERRORS=1
     # export MIMALLOC_VERBOSE=1
     # export MIMALLOC_SHOW_STATS=1
     # export MIMALLOC_GUARDED_PRECISE=1
-    export MIMALLOC_GUARDED_SAMPLE_RATE=1
+    # export MIMALLOC_GUARDED_SAMPLE_RATE=1
 fi
 
 # Build the command

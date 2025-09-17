@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+# SPDX-License-Identifier: MIT
+
 cmake_minimum_required(VERSION 3.21)
 project(allocator-comparisons)
 set(CMAKE_CXX_STANDARD 20)
