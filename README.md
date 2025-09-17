@@ -17,4 +17,4 @@ cmake --build build-debug
 ./run_example.sh --jemalloc ./build-debug/bin/demo_crash -i # invalid pointer free
 ./run_example.sh --jemalloc ./build-debug/bin/demo_crash -u # use after free (not working)
 ```
-You can pass `--mimalloc` or `--glibc` instead of `--jemalloc`.
+You can pass `--mimalloc`, `--asan` or `--glibc` instead of `--jemalloc`.
